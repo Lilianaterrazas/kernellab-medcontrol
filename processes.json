@@ -1,0 +1,13 @@
+{
+  "quantum": 3,
+  "frames": 4,
+  "pages": [1,2,3,4,1,2,5,1,2,3,4,5,2,1,5,3,2],
+  "processes": [
+    {"id":"P1","function":"Monitoramento cardiaco","arrival":0,"burst":8,"priority":1,"memory_mb":120,"devices":["rede"]},
+    {"id":"P2","function":"Transmissao de telemetria","arrival":1,"burst":4,"priority":2,"memory_mb":80,"devices":["rede"]},
+    {"id":"P3","function":"Geracao de relatorios","arrival":2,"burst":9,"priority":4,"memory_mb":200,"devices":["disco"]},
+    {"id":"P4","function":"Emissao de alarme critico","arrival":3,"burst":2,"priority":0,"memory_mb":60,"devices":["audio","rede"]},
+    {"id":"P5","function":"Backup do sistema","arrival":5,"burst":12,"priority":5,"memory_mb":300,"devices":["disco"]},
+    {"id":"P6","function":"Atualizacao de dados","arrival":6,"burst":6,"priority":3,"memory_mb":150,"devices":["disco","rede"]}
+  ]
+}

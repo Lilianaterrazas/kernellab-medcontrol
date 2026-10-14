@@ -1,0 +1,137 @@
+
+### FCFS ###
+Gantt: P1[0-8] | P2[8-12] | P3[12-21] | P4[21-23] | P5[23-35] | P6[35-41]
+PID | Espera | Retorno | Resposta | Conclusao
+----+--------+---------+----------+----------
+P1  | 0      | 8       | 0        | 8        
+P2  | 7      | 11      | 7        | 12       
+P3  | 10     | 19      | 10       | 21       
+P4  | 18     | 20      | 18       | 23       
+P5  | 18     | 30      | 18       | 35       
+P6  | 29     | 35      | 29       | 41       
+Medias: {'waiting': 13.667, 'turnaround': 20.5, 'response': 13.667} Trocas: 5
+
+### SJF ###
+Gantt: P1[0-8] | P4[8-10] | P2[10-14] | P6[14-20] | P3[20-29] | P5[29-41]
+PID | Espera | Retorno | Resposta | Conclusao
+----+--------+---------+----------+----------
+P1  | 0      | 8       | 0        | 8        
+P2  | 9      | 13      | 9        | 14       
+P3  | 18     | 27      | 18       | 29       
+P4  | 5      | 7       | 5        | 10       
+P5  | 24     | 36      | 24       | 41       
+P6  | 8      | 14      | 8        | 20       
+Medias: {'waiting': 10.667, 'turnaround': 17.5, 'response': 10.667} Trocas: 5
+
+### RR ###
+Gantt: P1[0-3] | P2[3-6] | P3[6-9] | P4[9-11] | P1[11-14] | P5[14-17] | P6[17-20] | P2[20-21] | P3[21-24] | P1[24-26] | P5[26-29] | P6[29-32] | P3[32-35] | P5[35-38] | P5[38-41]
+PID | Espera | Retorno | Resposta | Conclusao
+----+--------+---------+----------+----------
+P1  | 18     | 26      | 0        | 26       
+P2  | 16     | 20      | 2        | 21       
+P3  | 24     | 33      | 4        | 35       
+P4  | 6      | 8       | 6        | 11       
+P5  | 24     | 36      | 9        | 41       
+P6  | 20     | 26      | 11       | 32       
+Medias: {'waiting': 18.0, 'turnaround': 24.833, 'response': 5.333} Trocas: 13
+
+### PRIORITY ###
+Gantt: P1[0-8] | P4[8-10] | P2[10-14] | P6[14-20] | P3[20-29] | P5[29-41]
+PID | Espera | Retorno | Resposta | Conclusao
+----+--------+---------+----------+----------
+P1  | 0      | 8       | 0        | 8        
+P2  | 9      | 13      | 9        | 14       
+P3  | 18     | 27      | 18       | 29       
+P4  | 5      | 7       | 5        | 10       
+P5  | 24     | 36      | 24       | 41       
+P6  | 8      | 14      | 8        | 20       
+Medias: {'waiting': 10.667, 'turnaround': 17.5, 'response': 10.667} Trocas: 5
+
+### Comparacao de CPU ###
+Algoritmo | Espera media | Retorno medio | Resposta media | Trocas
+----------+--------------+---------------+----------------+-------
+FCFS      | 13.67        | 20.50         | 13.67          | 5     
+SJF       | 10.67        | 17.50         | 10.67          | 5     
+RR        | 18.00        | 24.83         | 5.33           | 13    
+PRIORITY  | 10.67        | 17.50         | 10.67          | 5     
+
+### Memoria FIFO ###
+Ref | Frames                | Resultado
+----+-----------------------+----------
+1   | [1, None, None, None] | FAULT    
+2   | [1, 2, None, None]    | FAULT    
+3   | [1, 2, 3, None]       | FAULT    
+4   | [1, 2, 3, 4]          | FAULT    
+1   | [1, 2, 3, 4]          | HIT      
+2   | [1, 2, 3, 4]          | HIT      
+5   | [5, 2, 3, 4]          | FAULT    
+1   | [5, 1, 3, 4]          | FAULT    
+2   | [5, 1, 2, 4]          | FAULT    
+3   | [5, 1, 2, 3]          | FAULT    
+4   | [4, 1, 2, 3]          | FAULT    
+5   | [4, 5, 2, 3]          | FAULT    
+2   | [4, 5, 2, 3]          | HIT      
+1   | [4, 5, 1, 3]          | FAULT    
+5   | [4, 5, 1, 3]          | HIT      
+3   | [4, 5, 1, 3]          | HIT      
+2   | [4, 5, 1, 2]          | FAULT    
+Hits: 5 Faults: 12 Taxa: 70.59%
+
+### Memoria LRU ###
+Ref | Frames                | Resultado
+----+-----------------------+----------
+1   | [1, None, None, None] | FAULT    
+2   | [1, 2, None, None]    | FAULT    
+3   | [1, 2, 3, None]       | FAULT    
+4   | [1, 2, 3, 4]          | FAULT    
+1   | [1, 2, 3, 4]          | HIT      
+2   | [1, 2, 3, 4]          | HIT      
+5   | [1, 2, 5, 4]          | FAULT    
+1   | [1, 2, 5, 4]          | HIT      
+2   | [1, 2, 5, 4]          | HIT      
+3   | [1, 2, 5, 3]          | FAULT    
+4   | [1, 2, 4, 3]          | FAULT    
+5   | [5, 2, 4, 3]          | FAULT    
+2   | [5, 2, 4, 3]          | HIT      
+1   | [5, 2, 4, 1]          | FAULT    
+5   | [5, 2, 4, 1]          | HIT      
+3   | [5, 2, 3, 1]          | FAULT    
+2   | [5, 2, 3, 1]          | HIT      
+Hits: 7 Faults: 10 Taxa: 58.82%
+
+### Memoria OPT ###
+Ref | Frames                | Resultado
+----+-----------------------+----------
+1   | [1, None, None, None] | FAULT    
+2   | [1, 2, None, None]    | FAULT    
+3   | [1, 2, 3, None]       | FAULT    
+4   | [1, 2, 3, 4]          | FAULT    
+1   | [1, 2, 3, 4]          | HIT      
+2   | [1, 2, 3, 4]          | HIT      
+5   | [1, 2, 3, 5]          | FAULT    
+1   | [1, 2, 3, 5]          | HIT      
+2   | [1, 2, 3, 5]          | HIT      
+3   | [1, 2, 3, 5]          | HIT      
+4   | [1, 2, 4, 5]          | FAULT    
+5   | [1, 2, 4, 5]          | HIT      
+2   | [1, 2, 4, 5]          | HIT      
+1   | [1, 2, 4, 5]          | HIT      
+5   | [1, 2, 4, 5]          | HIT      
+3   | [3, 2, 4, 5]          | FAULT    
+2   | [3, 2, 4, 5]          | HIT      
+Hits: 10 Faults: 7 Taxa: 41.18%
+
+### Matriz de acesso (L=ler, G=gravar, E=executar, U=utilizar, X=exclusivo) ###
+Processo | disco | rede | audio | logs
+---------+-------+------+-------+-----
+P1       | -     | LGU  | -     | LGU 
+P2       | -     | LGU  | -     | LGU 
+P3       | LGUX  | -    | -     | LGU 
+P4       | -     | LGU  | UX    | LGU 
+P5       | LGUX  | -    | -     | LGU 
+P6       | LGUX  | LGU  | -     | LGU 
+Fila de disco: [('P3', 'inicio'), ('P3', 'fim'), ('P5', 'inicio'), ('P5', 'fim'), ('P6', 'inicio'), ('P6', 'fim')]
+Mutex concorrente: [('P3', 'inicio'), ('P3', 'fim'), ('P5', 'inicio'), ('P5', 'fim'), ('P6', 'inicio'), ('P6', 'fim')]
+
+Alerta P4 - inicio: {'FCFS': 18, 'SJF': 5, 'RR': 6, 'PRIORITY': 5}
+Graficos salvos em /mnt/data/kernellab/docs
